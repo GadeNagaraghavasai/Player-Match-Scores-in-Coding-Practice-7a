@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-
+app.use(express.json());
 const {open} = require('sqlite')
 const sqlite3 = require('sqlite3')
 
@@ -74,7 +74,7 @@ app.put('/players/:playerId/', async (request, response) => {
     player_id = ${playerId};`
 
   player1 = await db.run(updatePlayerQuery)
-  response.send("Player Details Updated")
+  response.send('Player Details Updated')
 })
 
 app.get('/matches/:matchId/', async (request, response) => {
@@ -152,4 +152,4 @@ app.get('/players/:playerId/playerScores/', async (request, response) => {
   const playerScores = await db.get(getPlayerScoreQuery)
   response.send(playerScores)
 })
-module.exports = app;
+module.exports = app
